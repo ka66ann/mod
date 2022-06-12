@@ -3,7 +3,7 @@
 		"version": "1.0.8",
 		"scripts": {
 				
-				"n": "git add . && git commit -m 0 && np patch --no-cleanup --no-tests"
+				"n": "git add . && git commit -m 0 && npx np patch --no-cleanup --no-tests"
 		},
 		"main": "mod.ts",
 		
