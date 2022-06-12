@@ -41,7 +41,7 @@ l = pa(l)
             },
             body: JSON.stringify({
       "log_entry": o,
-      "metadata": {"x":l}
+      "metadata": l
     })
         })  
 
