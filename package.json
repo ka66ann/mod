@@ -1,11 +1,13 @@
 {
-	"private": true,
-	
-	"scripts": {
+		"name": "8e",
+		"version": "1.0.8",
+		"scripts": {
+				
+				"n": "git add . && git commit -m 0 && np patch --no-cleanup --no-tests"
+		},
+		"main": "dist/index.js",
 		
-		"g": "git add . && git commit -m \"first commit\" && git push -u origin main -f"
-	},
-	"dependencies": {
-	
-	}
+		"publishConfig": {
+				"registry": "https://registry.npmjs.org"
+		}
 }
