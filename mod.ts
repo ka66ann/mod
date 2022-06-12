@@ -1,3 +1,4 @@
+import "./c.ts";
 import gokv from "https://deno.land/x/gokv@0.0.12/mod.ts";
 gokv.config({ token: Deno.env.get("GOKV_TOKEN") })
 
@@ -17,7 +18,7 @@ const kv = gokv.DurableKV({ namespace: "xxx" })
 
     var rr = re.clone()
         rr = await rr.json()
-        console.log(rr)
+       // console.log(rr)
 
 //console.log(re)
 
