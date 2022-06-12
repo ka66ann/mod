@@ -24,6 +24,16 @@ console = new Proxy(console, {
            // l = typeof l === "object" ? JSON.stringify(l, null, 4) : l
            // l = String(l).substring(0, 4090)
 
+
+    var pa = j => {
+    try {
+        return JSON.parse(j)
+    } catch (err) {
+        return j 
+    }
+}
+
+l = pa(l)
         return fetch("https://api.logflare.app/api/logs?api_key=iqrq8HGRJJ_K&source=78832ad7-a4ae-43c2-8418-4c5f2f8b67b2", {
             method: "POST",
             headers: {
