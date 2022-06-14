@@ -19,4 +19,4 @@ class Hono {
 }
 export {
   Hono
-};
+}
