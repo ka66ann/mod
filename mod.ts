@@ -19,4 +19,5 @@ class Hono {
     });
   }
 }
-export default Hono
+const app = new Hono()
+export default app
