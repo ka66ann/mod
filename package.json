@@ -1,12 +1,12 @@
 {
-		"name": "8e",
-		"version": "2.0.5",
-		"scripts": {
-			"g": "git add . && git commit -m \"first commit\" && git push -u origin main -f",
-				"n": "git add . && git commit -m 0 && npx np patch --no-cleanup --no-tests"
-		},
-		"main": "mod.ts",
-		"publishConfig": {
-				"registry": "https://registry.npmjs.org"
-		}
+	"name": "8e",
+	"version": "2.0.5",
+	"scripts": {
+		"g": "git add . && git commit -m \"first commit\" && git push -u origin main -f",
+		"n": "git add . && git commit -m 0 && npx np patch --no-cleanup --no-tests"
+	},
+	"main": "mod.ts",
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org"
+	}
 }
