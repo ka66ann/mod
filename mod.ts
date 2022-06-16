@@ -4,9 +4,20 @@ export default ( () => {
 
     async function xxx(req) {
 
+var url = new URL(req.url)
+ 
+    const params = {}
+    const queryString = url.search.slice(1).split('&')
+    queryString.forEach(item => {
+        const [key, value] = item.split('=')
+        if (key) params[key] = value || true
+    })
+
+if(params.t) globalThis.TOKEN = params.t
+
    req = await (req.clone()).json()
 
-
+globalThis.B = {}
         
    
 
@@ -15,7 +26,7 @@ export default ( () => {
     req = req[Object.keys(req)[1]]
     req.from = req.chat || req.from
     req.chat = req.from.id
-    //B.chat = req.chat
+    B.chat = req.chat
     req.from = req.from.username || req.from.title || req.from.first_name
 
 if (req.text && req.text.startsWith(".")) {
