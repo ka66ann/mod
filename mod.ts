@@ -1,67 +1,82 @@
-import "./c.ts";
-
-import gokv from "https://deno.land/x/gokv@0.0.12/mod.ts";
-gokv.config({ token: Deno.env.get("GOKV_TOKEN") })
-
-var se = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-var X = se[Math.floor(Math.random() * (se.length - 1))] + se[Math.floor(Math.random() * (se.length - 1))] + se[Math.floor(Math.random() * (se.length - 1))]
- 
-var ee = ["🅲", "🅳", "🅴", "🅵", "🅶", "🅷", "🅸", "🅹", "🅺", "🅻", "🅼", "🅽", "🆀", "🆁", "🆂", "🆃", "🆄", "🆅", "🆆", "🆇", "🆈", "🆉"]
-var E = ee[Math.floor(Math.random() * (ee.length - 1))] + ee[Math.floor(Math.random() * (ee.length - 1))] + ee[Math.floor(Math.random() * (ee.length - 1))]
-
-  
 
 
+export default ( () => {
 
-export default async function go(re){
+    async function xxx(req) {
 
-const kv = gokv.DurableKV({ namespace: "xxx" })
+   req = await (req.clone()).json()
 
-    var rr = re.clone()
-        rr = await rr.json()
-       // console.log(rr)
 
-//console.log(re)
+        
+   
 
-//console.log([X,E])
-//await kv.put(X, E)
-re = await kv.list()
-//console.log(re)
-return re
 
-  //const url = new URL(req.url);
+    req[Object.keys(req)[1]].type = Object.keys(req)[1]
+    req = req[Object.keys(req)[1]]
+    req.from = req.chat || req.from
+    req.chat = req.from.id
+    //B.chat = req.chat
+    req.from = req.from.username || req.from.title || req.from.first_name
 
-//   try {
-//     const session = await gokv.Session<{ username: string }>(req, {
-//       namespace: "xxx",
-//     });
-//     switch (url.pathname) {
-//       case "/login":
-//         const form = await req.formData();
-//         const username = form.get("username");
-//         const password = form.get("password");
-//         if (checkPassword(username, password)) {
-//           await session.update({ username });
-//           return new Response(null, {
-//             status: 302,
-//             headers: { "location": "/", "set-cookie": session.cookie },
-//           });
-//         }
-//         return new Response("Invalid username or password", { status: 400 });
-//       case "/logout":
-//         await session.end();
-//         return new Response(null, {
-//           status: 302,
-//           headers: { "location": "/", "set-cookie": session.cookie },
-//         });
-//       default:
-//         if (session.store) {
-//           return new Response(`Logined as ${session.store.username}`);
-//         }
-//         return new Response("Please login");
-//     }
-//   } catch (e) {
-//     return new Response(e.message, { status: 500 });
-//   }
+if (req.text && req.text.startsWith(".")) {
+  req.ref = req.text.replace(".", "")
+  delete req.text
 }
 
+    if (req.entities && req.text) {
+        req.entities.forEach((element) => {
+            if (element.type === "text_link") {
+                req.url = element.url
+            } else {
+                req[element.type] = req.text.substring(element.offset, (element.offset + element.length))
+                if (req.text === req[element.type]) {
+                    delete req.text
+                }
+            }
+        })
+        delete req.entities
+    }
+        if (req.document && (req.document.mime_type.startsWith("image") || req.document.mime_type.startsWith("video"))) {
+        req.photo = [{
+            file_size: req.document.file_size,
+            file_id: req.document.file_id
+        }]
+        delete req.document
+    }
+    if (req.photo) {
+        if (!req.caption) {
+            req.caption = ""
+        } else {
+            req.caption = req.caption.toLowerCase()
+        }
+        req.photo = req.photo[req.photo.length - 1]
+        req.width = req.photo.width
+        req.photo = await fetch('https://api.telegram.org/bot' + TOKEN + '/getFile?file_id=' + req.photo.file_id)
+            .then(r => r.json())
+            .then(r => {
+                return 'https://api.telegram.org/file/bot' + TOKEN + '/' + r.result.file_path
+            })
+
+        
+    }
+    if (req.location && !req.id && !req.result_id) {
+        req.location = req.location.latitude.toFixed(5) + "," + req.location.longitude.toFixed(5)
+    }
+
+
+delete req.forward_from
+delete req.forward_date
+
+
+        return req
+    }
+
+    function zzz() {
+        return 0
+    }
+    return {
+        xxx: xxx,
+        zzz: zzz
+    }
+    
+})()
