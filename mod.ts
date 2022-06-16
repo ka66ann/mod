@@ -2,6 +2,8 @@
 
 export default ( () => {
 
+var B = { method: "sendmessage" }
+
     async function xxx(req) {
 
 var url = new URL(req.url)
@@ -13,11 +15,11 @@ var url = new URL(req.url)
         if (key) params[key] = value || true
     })
 
-if(params.t) globalThis.TOKEN = params.t
+if(params.t) var TOKEN = params.t
 
    req = await (req.clone()).json()
 
-globalThis.B = {}
+
         
    
 
@@ -26,7 +28,7 @@ globalThis.B = {}
     req = req[Object.keys(req)[1]]
     req.from = req.chat || req.from
     req.chat = req.from.id
-    B.chat = req.chat
+    B.chat_id = req.chat
     req.from = req.from.username || req.from.title || req.from.first_name
 
 if (req.text && req.text.startsWith(".")) {
@@ -78,8 +80,8 @@ if (req.text && req.text.startsWith(".")) {
 delete req.forward_from
 delete req.forward_date
 
-
-        return req
+B.text = req
+        return B
     }
 
     function zzz() {
