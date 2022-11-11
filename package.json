@@ -1,15 +1,15 @@
 {
   "name": "8e",
-  "version": "2.0.13",
+  "version": "2.0.12",
   "description": "oclif example Hello World CLI",
-  "author": "vsamaru @vsamaru",
+  "author": "ka9an",
   "bin": {
-    "8c": "./bin/run"
+    "8e": "./bin/run"
   },
-  "homepage": "https://github.com/vsamaru/8c",
+  "homepage": "https://github.com/ka9an/8e",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "vsamaru/8c",
+  "repository": "ka9an/8e",
   "files": [
     "/bin",
     "/dist",
@@ -35,8 +35,8 @@
     "tslib": "^2.3.1"
   },
   "oclif": {
-    "bin": "8c",
-    "dirname": "8c",
+    "bin": "8e",
+    "dirname": "8e",
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",
@@ -63,7 +63,7 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/vsamaru/hello-world/issues",
+  "bugs": "https://github.com/ka9an/8e/issues",
   "keywords": [
     "oclif"
   ],
