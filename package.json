@@ -1,12 +1,71 @@
 {
-	"name": "8e",
-	"version": "2.0.12",
-	"scripts": {
-		"g": "git add . && git commit -m \"first commit\" && git push -u origin main -f",
-		"n": "git add . && git commit -m 0 && npx np patch --no-cleanup --no-tests"
-	},
-	"main": "mod.ts",
-	"publishConfig": {
-		"registry": "https://registry.npmjs.org"
-	}
+  "name": "8e",
+  "version": "2.0.13",
+  "description": "oclif example Hello World CLI",
+  "author": "vsamaru @vsamaru",
+  "bin": {
+    "8c": "./bin/run"
+  },
+  "homepage": "https://github.com/vsamaru/8c",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": "vsamaru/8c",
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@oclif/core": "^1.19.1",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-plugins": "^2.1.6"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2.2.8",
+    "@types/chai": "^4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.18.3",
+    "chai": "^4",
+ 
+    "mocha": "^9",
+    "oclif": "^3",
+    "shx": "^0.3.3",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.3.1"
+  },
+  "oclif": {
+    "bin": "8c",
+    "dirname": "8c",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "hello": {
+        "description": "Say hello to the world and others"
+      }
+    }
+  },
+  "scripts": {
+    "g": "git add . && git commit -m \"first commit\" && git push -u origin main -f",
+    "n": "npx np patch --no-cleanup --no-tests",
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/vsamaru/hello-world/issues",
+  "keywords": [
+    "oclif"
+  ],
+  "types": "dist/index.d.ts"
 }
